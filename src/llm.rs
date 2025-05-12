@@ -86,6 +86,13 @@ pub async fn generate_commit_message(
         .message
         .content
         .clone();
+    let mut commit_message_o: Vec<&str> =commit_message.split("</think>").collect();
+    let commit_message_t=commit_message_o.pop();
+    let commit_message = match commit_message_t{
+        Some(m)=>m.to_string(),
+        None=>commit_message
+    };
+    
 
     Ok(commit_message)
 }
